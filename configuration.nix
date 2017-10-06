@@ -67,4 +67,6 @@
   system.stateVersion = "17.03";
   system.autoUpgrade.enable = true;
 
+  # Save these config files on each rebuild.
+  system.extraSystemBuilderCmds = "ln -sv ${./.} $out/configuration";
 }
