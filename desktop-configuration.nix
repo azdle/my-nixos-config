@@ -4,6 +4,8 @@
   # Pretty Splashscreens From Boot
   boot.plymouth.enable = true;
 
+  hardware.bluetooth.enable = true;
+
   services.xserver = {
     enable = true;
     layout = "us";
