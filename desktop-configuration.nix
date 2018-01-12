@@ -24,6 +24,9 @@
     videoDrivers = [ "displaylink" ];
   };
 
+  boot.kernelModules = [ "kvm-intel" ];
+  virtualisation.libvirtd.enable = true;
+
   programs.fish.enable = true;
   programs.wireshark.enable = true;
 }
