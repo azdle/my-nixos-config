@@ -24,6 +24,7 @@
     videoDrivers = [ "displaylink" ];
   };
 
+  programs.fish.enable = true;
   programs.wireshark.enable = true;
 }
 
