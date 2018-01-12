@@ -29,5 +29,10 @@
 
   programs.fish.enable = true;
   programs.wireshark.enable = true;
+
+  # hotplug rules for FabISP (sparkfun attiny) programmer
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ACTION="add", ATTR{idVendor}=="1781", ATTR{idProduct}=="0c9f", GROUP="dialout", MODE="0666"
+  '';
 }
 
