@@ -37,5 +37,9 @@
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ACTION="add", ATTR{idVendor}=="1781", ATTR{idProduct}=="0c9f", GROUP="dialout", MODE="0666"
   '';
+
+  networking.extraHosts = ''
+    192.168.1.159 playpen.lan
+  '';
 }
 
