@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  # Required for displaylink
+  nixpkgs.config.allowUnfree = true;
+
   # Pretty Splashscreens From Boot
   boot.plymouth.enable = true;
 
