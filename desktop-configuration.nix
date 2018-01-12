@@ -6,6 +6,14 @@
 
   hardware.bluetooth.enable = true;
 
+  users.extraUsers.patrick = {
+    isNormalUser = true;
+    home = "/home/patrick";
+    shell = pkgs.fish;
+    description = "Patrick Barrett";
+    extraGroups = [ "wheel" "networkmanager" "dialout" "wireshark" ];
+  };
+
   services.xserver = {
     enable = true;
     layout = "us";
