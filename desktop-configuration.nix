@@ -9,12 +9,16 @@
 
   hardware.bluetooth.enable = true;
 
+  # For Steam
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+
   users.extraUsers.patrick = {
     isNormalUser = true;
     home = "/home/patrick";
     shell = pkgs.fish;
     description = "Patrick Barrett";
-    extraGroups = [ "wheel" "networkmanager" "dialout" "wireshark" ];
+    extraGroups = [ "wheel" "networkmanager" "dialout" "wireshark" "vboxusers" "fuse"];
   };
 
   services.xserver = {
@@ -24,22 +28,34 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome3.enable = true;
 
-    videoDrivers = [ "displaylink" ];
+    videoDrivers = [ "intel" "displaylink" ];
   };
 
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "fuse" ];
   virtualisation.libvirtd.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   programs.fish.enable = true;
   programs.wireshark.enable = true;
 
-  # hotplug rules for FabISP (sparkfun attiny) programmer
+  environment.systemPackages = with pkgs; [
+    chrome-gnome-shell
+    platformio
+    fuse
+  ];
+
+  # hotplug rules
   services.udev.extraRules = ''
+    # FabISP (sparkfun attiny) programmer
     SUBSYSTEM=="usb", ACTION="add", ATTR{idVendor}=="1781", ATTR{idProduct}=="0c9f", GROUP="dialout", MODE="0666"
+
+    # Steam Controller
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0666"
+    KERNEL=="uinput", MODE="0660", GROUP="users", OPTIONS+="static_node=uinput"
   '';
 
   networking.extraHosts = ''
-    192.168.1.159 playpen.lan
+    127.0.0.1 rainb.in
   '';
 }
 
