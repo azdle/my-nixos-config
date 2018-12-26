@@ -15,3 +15,5 @@
   '';
 }
 
+# Note I had to manually `mkdir ~/.gnupg` for some reason.
+  
