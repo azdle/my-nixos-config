@@ -18,7 +18,7 @@
     home = "/home/patrick";
     shell = pkgs.fish;
     description = "Patrick Barrett";
-    extraGroups = [ "wheel" "networkmanager" "dialout" "wireshark" "vboxusers" "fuse"];
+    extraGroups = [ "wheel" "networkmanager" "dialout" "wireshark" "vboxusers" "fuse" "foo"];
   };
 
   services.xserver = {
